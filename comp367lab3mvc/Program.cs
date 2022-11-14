@@ -1,4 +1,9 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using comp367lab3mvc.Data;
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<comp367lab3mvcContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("comp367lab3mvcContext") ?? throw new InvalidOperationException("Connection string 'comp367lab3mvcContext' not found.")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
